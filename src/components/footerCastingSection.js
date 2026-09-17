@@ -5,7 +5,7 @@ import Link from "next/link";
 import placeholder from "@/assets/images/waste-med-logo.jpg";
 
 const t = {
-  pl: { welcome: "Zapraszmy do współpracy" },
+  pl: { welcome: "Zapraszamy do współpracy" },
   en: { welcome: "We invite you to cooperate" },
 };
 
@@ -16,6 +16,9 @@ export const FooterCastingSection = ({
   locale,
 }) => {
   const tr = t[locale];
+
+  if (!(headline || subheadline || blocks || locale)) return null;
+
   return (
     <section className="bg-sky-500 py-20 lg:py-30">
       <div className="container max-w-7xl px-4 mx-auto w-full">

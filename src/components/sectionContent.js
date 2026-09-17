@@ -58,8 +58,8 @@ export function SectionContent({
   );
 
   return (
-    <div className="text-center text-black bg-white pt-14 lg:pt-26 pb-7 lg:pb-13">
-      <div className="container max-w-7xl mx-auto px-4  flex flex-col gap-10">
+    <div className="text-center text-black bg-white flex items-center justify-center py-16">
+      <div className="container max-w-7xl mx-auto px-4 flex flex-col gap-10">
         <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-6 w-full">
           {imageLeft ? (
             <>

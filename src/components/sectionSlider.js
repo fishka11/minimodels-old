@@ -20,7 +20,7 @@ export function SectionSlider({ slides, locale }) {
   if (!slides?.length) return null;
 
   return (
-    <div className="relative max-w-146 w-9/12 max-lg:w-9/12">
+    <div className="relative max-w-146 w-9/12 max-lg:w-9/12 mx-auto">
       <div className="overflow-hidden select-none">
         {/* Slajdy */}
         <div

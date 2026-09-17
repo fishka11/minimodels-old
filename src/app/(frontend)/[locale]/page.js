@@ -39,9 +39,9 @@ export async function generateMetadata({ params }) {
   const seo = data?.seo;
 
   return {
-    title: seo[locale]?.title ?? "MiniModels",
-    description: seo[locale]?.description,
-    keywords: seo[locale]?.keywords,
+    title: seo?.[locale]?.title ?? "MiniModels",
+    description: seo?.[locale]?.description,
+    keywords: seo?.[locale]?.keywords,
   };
 }
 

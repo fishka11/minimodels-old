@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 export function FloatingButton({ locale, button }) {
+  if (!(locale || button)) return null;
+
   const buttonRef = useRef(null);
   const [isFixed, setIsFixed] = useState(false);
 

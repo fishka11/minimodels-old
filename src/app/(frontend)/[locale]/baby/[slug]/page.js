@@ -16,7 +16,7 @@ export const getData = cache(async (slug) => {
   const data = await sanityFetch({
     query: MODEL_WITH_SIBLINGS_QUERY,
     params: { slug, cutoffDate: cutoffDate.toISOString() },
-    tags: [`nastolatki:${slug}`],
+    tags: [`model:${slug}`, `category:baby`],
   });
 
   return data;

@@ -7,8 +7,7 @@ export function ParallaxSection({
   children,
 }) {
   return (
-    <div
-      className={`relative min-h-dvh lg:min-h-(--sh) grid place-items-center bg-fixed bg-cover bg-top`}
+    <div className="relative sm:min-h-(--sh) grid place-items-center bg-fixed bg-cover bg-top max-sm:min-h-250"
       style={{
         backgroundImage: `url(${bgImage.src})`,
         "--sh": `calc(100dvh + ${sectionEnlargment}px)`,
@@ -16,7 +15,7 @@ export function ParallaxSection({
     >
       <div
         id={parralaxAnchor}
-        className="absolute bottom-10/12 sm:top-1/5 md:top-1/4 lg:top-5/12 xl:top-1/3 w-full"
+        className="absolute top-2/7 sm:top-1/5 md:top-1/4 lg:top-5/12 xl:top-1/3 w-full"
       />
       {/* Overlay */}
       {/* <div className="[grid-area:1/1] w-full min-h-screen bg-black/40" /> */}

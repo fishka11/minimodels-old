@@ -3,13 +3,12 @@ import { ModelHeader } from "@/components/modelHeader";
 import { ModelGallery } from "@/components/modelGallery";
 import { ModelData } from "@/components/modelData";
 import { ModelWorkPlace } from "./modelWorkPlace";
-import { ShareOnX } from "@/components/shareOnX";
 import { ModelSiblings } from "@/components/modelSiblings";
 import { ShareOnFacebook } from "./shareOnFacebook";
 import { TrackModelView } from "@/components/trackModelView";
 
 export function Model({ model, locale, slug, siblings }) {
-  const shareUrl = `https://minimodels-s.netlify.app/${locale}/${model.category}/${slug}`;
+  const shareUrl = `https://${process.env.NEXT_PUBLIC_BASE_URL}/${locale}/${model.category}/${slug}`;
   return (
     <main>
       <TrackModelView modelId={model._id} />

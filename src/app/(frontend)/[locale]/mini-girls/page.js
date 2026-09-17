@@ -19,7 +19,7 @@ export const getData = cache(async () => {
   const data = await sanityFetch({
     query: MINIGIRLS_WITH_CATEGORY_QUERY,
     params: { cutoffDate: getCutoffDate() },
-    tags: ["mini-girls", "modelCategory"],
+    tags: ["category:mini-girls"],
   });
 
   return data;
