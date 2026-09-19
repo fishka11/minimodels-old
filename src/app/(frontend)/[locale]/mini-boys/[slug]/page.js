@@ -1,4 +1,5 @@
 // src/app/[locale]/mini-boys/[slug]/page.js
+
 import { sanityFetch } from "@/sanity/lib/client";
 import {
   ALL_MINIBOYS_SLUGS_QUERY,
@@ -8,6 +9,12 @@ import { notFound } from "next/navigation";
 import { Model } from "@/components/model";
 import { LOCALES } from "@/lib/locales";
 import { cache } from "react";
+
+// 🔒 BLOKADA SSR — wymusza SSG/ISR
+export const dynamic = "error";
+
+// ⏱ ISR fallback (bezpieczne)
+export const revalidate = 3600;
 
 export const getData = cache(async (slug) => {
   const cutoffDate = new Date();
@@ -36,22 +43,24 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { locale, slug } = await params;
 
-  const model = await getData(slug);
+  // const model = await getData(slug);
 
   const t = {
     pl: {
-      title:
-        `${model?.name} - chłopiec do reklam i sesji zdjęciowych | MiniModels` ||
-        "Chłopiec do reklam i sesji zdjęciowych | MiniModels",
+      title: "Mały chłopiec do reklam i sesji zdjęciowych | MiniModels",
+      // title:
+      //   `${model?.name} - chłopiec do reklam i sesji zdjęciowych | MiniModels` ||
+      //   "Chłopiec do reklam i sesji zdjęciowych | MiniModels",
       description:
         "Oferujemy szeroką bazę chłopców - modeli, którzy spełnią oczekiwania nawet najbardziej wymagających klientów. Skontaktuj się z nami, aby znaleźć idealnego chłopca do swojego projektu i stworzyć niezapomniane kampanie reklamowe z udziałem naszych młodych talentów.",
       keywords:
         "chłopiec do reklam,model dziecięcy,chłopiec do sesji zdjęciowych,dziecięcy modeling,chłopiec do kampanii reklamowych,reklamy z dziećmi,mały model,chłopiec do katalogów,dziecko do reklam telewizyjnych,dziecięca agencja modelingowa,młody  aktor,Mini Boy",
     },
     en: {
-      title:
-        `${model?.name} - a mini-boy for commercials and photo shoots | MiniModels` ||
-        "A mini-boy for commercials and photo shoots | MiniModels",
+      title: "Mini-boy for commercials and photo shoots | MiniModels",
+      // title:
+      //   `${model?.name} - a mini-boy for commercials and photo shoots | MiniModels` ||
+      //   "A mini-boy for commercials and photo shoots | MiniModels",
       description:
         "We offer a wide selection of male models who will meet the expectations of even the most discerning clients. Contact us to find the perfect male model for your project and create unforgettable advertising campaigns featuring our young talents.",
       keywords:

@@ -1,4 +1,6 @@
+// src/app/[locale]/casting/page.js
 import { sanityFetch } from "@/sanity/lib/client";
+import { LOCALES } from "@/lib/locales";
 import { CASTING_PAGE_QUERY } from "@/sanity/lib/queries";
 import { notFound } from "next/navigation";
 import placeholder from "@/assets/images/casting_bg.jpg";
@@ -6,32 +8,79 @@ import { PageHeader } from "@/components/pageHeader";
 import RichTextRenderer from "@/components/richTextRenderer";
 import { cache } from "react";
 
-export const getData = cache(async () => {
+// BLOKADA SSR — wymusza SSG/ISR
+export const dynamic = "error";
+
+// ISR fallback w sekundach (1 godzina)
+export const revalidate = 3600;
+
+// Module-level cache przechowujący dane pobrane podczas builda (klucz: locale)
+const PAGE_CACHE = new Map();
+
+// -------------------------------------------------------
+// Prefetch danych podczas builda dla wszystkich locale
+// -------------------------------------------------------
+export async function generateStaticParams() {
+  await Promise.all(
+    LOCALES.map(async (locale) => {
+      try {
+        const data = await sanityFetch({
+          query: CASTING_PAGE_QUERY,
+          tags: ["castingPage", "teamSection"],
+        });
+
+        PAGE_CACHE.set(locale, data || null);
+      } catch (err) {
+        PAGE_CACHE.set(locale, null);
+      }
+    }),
+  );
+
+  return LOCALES.map((locale) => ({ locale }));
+}
+
+// -------------------------------------------------------
+// Bezpieczne getData z cache i fallbackiem
+// -------------------------------------------------------
+export const getData = cache(async (locale) => {
+  const cached = PAGE_CACHE.get(locale);
+  if (cached) return cached;
+
   const data = await sanityFetch({
     query: CASTING_PAGE_QUERY,
+    params: { locale },
     tags: ["castingPage", "teamSection"],
   });
 
-  return data;
+  PAGE_CACHE.set(locale, data || null);
+  return data || null;
 });
 
 // -------------------------------------------------------
 // Metadata
 // -------------------------------------------------------
 export async function generateMetadata({ params }) {
-  const { locale } = await params;
-  const data = await getData();
+  const resolvedParams = await params;
+  const { locale } = resolvedParams;
+
+  const data = PAGE_CACHE.get(locale) || (await getData(locale));
+  const seo = data?.seo || {};
 
   return {
-    title: data?.seo?.[locale]?.title,
-    description: data?.seo?.[locale]?.description,
-    keywords: data?.seo?.[locale]?.keywords,
+    title: seo?.[locale]?.title ?? seo?.title ?? "MiniModels",
+    description: seo?.[locale]?.description ?? seo?.description ?? "",
+    keywords: seo?.[locale]?.keywords ?? seo?.keywords ?? "",
   };
 }
 
-export default async function CastingPage({ params }) {
-  const { locale } = await params;
-  if (!["pl", "en"].includes(locale)) notFound();
+// -------------------------------------------------------
+// Strona główna (SSG/ISR)
+// -------------------------------------------------------
+export default async function Page({ params }) {
+  const resolvedParams = await params;
+  const { locale } = resolvedParams;
+
+  if (!LOCALES.includes(locale)) notFound();
 
   const data = await getData();
 

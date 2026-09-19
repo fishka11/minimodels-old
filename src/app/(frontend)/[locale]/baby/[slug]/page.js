@@ -1,4 +1,5 @@
 // src/app/[locale]/baby/[slug]/page.js
+
 import { sanityFetch } from "@/sanity/lib/client";
 import {
   ALL_BABY_SLUGS_QUERY,
@@ -8,6 +9,12 @@ import { notFound } from "next/navigation";
 import { Model } from "@/components/model";
 import { LOCALES } from "@/lib/locales";
 import { cache } from "react";
+
+// 🔒 BLOKADA SSR — wymusza SSG/ISR
+export const dynamic = "error";
+
+// ⏱ ISR fallback (bezpieczne)
+export const revalidate = 3600;
 
 export const getData = cache(async (slug) => {
   const cutoffDate = new Date();
@@ -36,22 +43,24 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { locale, slug } = await params;
 
-  const model = await getData(slug);
+  // const model = await getData(slug);
 
   const t = {
     pl: {
-      title:
-        `${model?.name} - małe dziecko do reklam i sesji zdjęciowych | MiniModels` ||
-        "Małe dziecko do reklam i sesji zdjęciowych | MiniModels",
+      title: "Niemowlę do reklam i sesji zdjęciowych | MiniModels",
+      // title:
+      //   `${model?.name} - małe dziecko do reklam i sesji zdjęciowych | MiniModels` ||
+      //   "Małe dziecko do reklam i sesji zdjęciowych | MiniModels",
       description:
-        "Oferujemy szeroką bazę małych modeli, którzy spełnią oczekiwania nawet najbardziej wymagających klientów. Skontaktuj się z nami, aby znaleźć idealne niemowlę do swojego projektu i stworzyć niezapomniane kampanie reklamowe z udziałem najmłodszych talentów.",
+        "Oferujemy szeroką bazę niemowalków - małych modeli, którzy spełnią oczekiwania nawet najbardziej wymagających klientów. Skontaktuj się z nami, aby znaleźć idealne niemowlę do swojego projektu i stworzyć niezapomniane kampanie reklamowe z udziałem najmłodszych talentów.",
       keywords:
         "niemowlę do reklam,dziecko do reklam,niemowlę do sesji zdjęciowych,baby model,niemowlę do kampanii reklamowych,dziecięce sesje fotograficzne,niemowlak do reklam telewizyjnych,reklama z niemowlęciem,dziecko do katalogów,agencja dziecięca,dziecięcy modeling,MiniModels",
     },
     en: {
-      title:
-        `${model?.name} - a small child for commercials and photo shoots | MiniModels` ||
-        "A small child for commercials and photo shoots | MiniModels",
+      title: "Small child for commercials and photo shoots | MiniModels",
+      // title:
+      //   `${model?.name} - a small child for commercials and photo shoots | MiniModels` ||
+      //   "A small child for commercials and photo shoots | MiniModels",
       description:
         "We offer a wide selection of baby models to meet the expectations of even the most discerning customers. Contact us to find the perfect baby for your project and create unforgettable advertising campaigns featuring our youngest talents.",
       keywords:
@@ -73,7 +82,6 @@ export default async function ModelPage({ params }) {
   if (!LOCALES.includes(locale)) notFound();
 
   const model = await getData(slug);
-  console.log("ModelPage rendered: ", model);
 
   if (!model) notFound();
 
