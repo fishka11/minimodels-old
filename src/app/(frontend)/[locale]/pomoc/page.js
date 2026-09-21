@@ -2,7 +2,7 @@ import { sanityFetch } from "@/sanity/lib/client";
 import { FAQ_PAGE_QUERY } from "@/sanity/lib/queries";
 import { LOCALES } from "@/lib/locales";
 import { notFound } from "next/navigation";
-// import placeholder from "@/assets/images/about_bg.jpg";
+// import placeholder from "@/assets/images/lay_about_bg.webp";
 import { PageHeader } from "@/components/pageHeader";
 import FAQAccordion from "@/components/faqAccordion";
 import { cache } from "react";

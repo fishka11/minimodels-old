@@ -24,7 +24,8 @@ export const BABIES_WITH_CATEGORY_QUERY = defineQuery(`
       title,
       seo,
       pageTitle,
-      pageSubtitle
+      pageSubtitle,
+      bgImage,
     }
   }
 `);
@@ -53,7 +54,8 @@ export const MINIBOYS_WITH_CATEGORY_QUERY = defineQuery(`
       title,
       seo,
       pageTitle,
-      pageSubtitle
+      pageSubtitle,
+      bgImage,
     }
   }
 `);
@@ -82,7 +84,8 @@ export const MINIGIRLS_WITH_CATEGORY_QUERY = defineQuery(`
       title,
       seo,
       pageTitle,
-      pageSubtitle
+      pageSubtitle,
+      bgImage,
     }
   }
 `);
@@ -111,7 +114,8 @@ export const TEENS_WITH_CATEGORY_QUERY = defineQuery(`
       title,
       seo,
       pageTitle,
-      pageSubtitle
+      pageSubtitle,
+      bgImage,
     }
   }
 `);
@@ -223,6 +227,9 @@ export const HOME_PAGE_QUERY = defineQuery(`
     seo,
     sections[] {
       sectionTitle,
+      bgImage,
+      bgImage2,
+      bgImage3,
       texts,
       button,
       video
@@ -237,6 +244,7 @@ export const CASTING_PAGE_QUERY = defineQuery(`
   pageTitle,
   pageSubtitle,
   body,
+  bgImage,
   sections[] {
     sectionTitle,
     texts,
@@ -254,6 +262,7 @@ export const ABOUTUS_PAGE_QUERY = defineQuery(`
   pageTitle,
   pageSubtitle,
   body,
+  bgImage,
   sections[] {
     sectionTitle,
     texts,

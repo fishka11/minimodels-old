@@ -640,6 +640,27 @@ export type HomePage = {
       pl?: string;
       en?: string;
     };
+    bgImage?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    bgImage2?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    bgImage3?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
     texts?: {
       pl?: Array<string>;
       en?: Array<string>;
@@ -1271,7 +1292,7 @@ export type ALL_TEENS_SLUGS_QUERY_RESULT = Array<{
 
 // Source: src/sanity/lib/queries.ts
 // Variable: HOME_PAGE_QUERY
-// Query: *[_type == "homePage" && _id == "homePage"][0] {    title,    seo,    sections[] {      sectionTitle,      texts,      button,      video    }  }
+// Query: *[_type == "homePage" && _id == "homePage"][0] {    title,    seo,    sections[] {      sectionTitle,      bgImage,      bgImage2,      bgImage3,      texts,      button,      video    }  }
 export type HOME_PAGE_QUERY_RESULT = {
   title: string | null;
   seo: {
@@ -1288,6 +1309,27 @@ export type HOME_PAGE_QUERY_RESULT = {
   } | null;
   sections: Array<{
     sectionTitle: string;
+    bgImage: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    } | null;
+    bgImage2: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    } | null;
+    bgImage3: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    } | null;
     texts: {
       pl?: Array<string>;
       en?: Array<string>;
@@ -1775,7 +1817,7 @@ declare module "@sanity/client" {
     '*[_type == "model" && category->title == "mini-boys" && active == true && defined(slug.current)] {\n    "slug": slug.current\n  }': ALL_MINIBOYS_SLUGS_QUERY_RESULT;
     '*[_type == "model" && category->title == "mini-girls" && active == true && defined(slug.current)] {\n    "slug": slug.current\n  }': ALL_MINIGIRLS_SLUGS_QUERY_RESULT;
     '*[_type == "model" && category->title == "nastolatki" && active == true && defined(slug.current)] {\n    "slug": slug.current\n  }': ALL_TEENS_SLUGS_QUERY_RESULT;
-    '\n  *[_type == "homePage" && _id == "homePage"][0] {\n    title,\n    seo,\n    sections[] {\n      sectionTitle,\n      texts,\n      button,\n      video\n    }\n  }\n': HOME_PAGE_QUERY_RESULT;
+    '\n  *[_type == "homePage" && _id == "homePage"][0] {\n    title,\n    seo,\n    sections[] {\n      sectionTitle,\n      bgImage,\n      bgImage2,\n      bgImage3,\n      texts,\n      button,\n      video\n    }\n  }\n': HOME_PAGE_QUERY_RESULT;
     '\n  *[_type=="castingPage"][0]{\n  title,\n  seo,\n  pageTitle,\n  pageSubtitle,\n  body,\n  sections[] {\n    sectionTitle,\n    texts,\n    button,\n    video,\n    email\n  }\n}\n': CASTING_PAGE_QUERY_RESULT;
     '\n  *[_type=="aboutUsPage"][0]{\n  title,\n  seo,\n  pageTitle,\n  pageSubtitle,\n  body,\n  sections[] {\n    sectionTitle,\n    texts,\n    button,\n    video,\n    email\n  }\n}\n': ABOUTUS_PAGE_QUERY_RESULT;
     '\n  *[_type == "faqPage"][0]{\n    title,\n    seo,\n    pageTitle,\n    pageSubtitle,\n    faq[] {\n      _key,\n      question,\n      answer\n    }\n  }\n': FAQ_PAGE_QUERY_RESULT;

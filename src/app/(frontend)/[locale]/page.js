@@ -4,22 +4,14 @@ import { LOCALES } from "@/lib/locales";
 import { sanityFetch } from "@/sanity/lib/client";
 import { HOME_PAGE_QUERY } from "@/sanity/lib/queries";
 import { notFound } from "next/navigation";
-import Image from "next/image";
-import imgPartnersUp from "@/assets/images/partners-up.png";
-import imgPartnersDown from "@/assets/images/partners-down.png";
-import imgCollage from "@/assets/images/mini-boy-girl.jpg";
-import imgDreams from "@/assets/images/marzenia-zdj.jpg";
-import imgShowBusiness from "@/assets/images/show_biznes.jpg";
-import imgSection1Bg from "@/assets/images/strona-glowna.jpg";
-import imgSection2Bg from "@/assets/images/sukces.jpg";
-import imgSection3Bg from "@/assets/images/marzenia.jpg";
-import imgSection4Bg from "@/assets/images/zaufanie.jpg";
-import imgSection5Bg from "@/assets/images/slawa.jpg";
-import imgSection6Bg from "@/assets/images/szansa.jpg";
+import imgCollage from "@/assets/images/lay_mini-boy-girl.webp";
+import imgDreams from "@/assets/images/lay_marzenia-zdj.webp";
+import imgShowBusiness from "@/assets/images/lay_show_biznes.webp";
 import { SectionContent } from "@/components/sectionContent";
 import { slides } from "@/lib/logotypes";
 import { Hero } from "@/components/hero";
 import { cache } from "react";
+import { urlFor } from "@/sanity/lib/image";
 
 // BLOKADA SSR — wymusza SSG/ISR
 export const dynamic = "error";
@@ -103,6 +95,46 @@ export default async function Page({ params }) {
   const [section1, section2, section3, section4, section5, section6] =
     data?.sections ?? [];
 
+  const imgSection1Bg = urlFor(section1?.bgImage)
+    .auto("format")
+    .quality(80)
+    .url();
+
+  const imgSection2Bg = urlFor(section2?.bgImage)
+    .auto("format")
+    .quality(80)
+    .url();
+
+  const imgSection3Bg = urlFor(section3?.bgImage)
+    .auto("format")
+    .quality(80)
+    .url();
+
+  const imgSection4Bg = urlFor(section4?.bgImage)
+    .auto("format")
+    .quality(80)
+    .url();
+
+  const imgSection5Bg = urlFor(section5?.bgImage)
+    .auto("format")
+    .quality(80)
+    .url();
+
+  const imgSection6Bg = urlFor(section6?.bgImage)
+    .auto("format")
+    .quality(80)
+    .url();
+
+  const imgPartnersUp = urlFor(section1?.bgImage2)
+    .auto("format")
+    .quality(80)
+    .url();
+
+  const imgPartnersDown = urlFor(section2?.bgImage2)
+    .auto("format")
+    .quality(80)
+    .url();
+
   return (
     <main>
       <Hero
@@ -115,13 +147,13 @@ export default async function Page({ params }) {
       />
       <ParallaxSection
         bgImage={imgSection2Bg}
-        parralaxAnchor="section2"
+        parallaxAnchor="section2"
         sectionEnlargment="300"
       >
         <div className="mx-auto h-full grid grid-cols-1 place-content-between text-center gap-10">
           <div
             className="w-full h-48"
-            style={{ backgroundImage: `url(${imgPartnersDown.src})` }}
+            style={{ backgroundImage: `url(${imgPartnersDown})` }}
           ></div>
           {/* <Image
             src={imgPartnersDown}
@@ -143,7 +175,7 @@ export default async function Page({ params }) {
       </ParallaxSection>
       <ParallaxSection
         bgImage={imgSection3Bg}
-        parralaxAnchor="section3"
+        parallaxAnchor="section3"
         sectionEnlargment="300"
       >
         <div className="mx-auto h-full grid grid-cols-1 place-content-end text-center gap-10">
@@ -161,7 +193,7 @@ export default async function Page({ params }) {
       </ParallaxSection>
       <ParallaxSection
         bgImage={imgSection4Bg}
-        parralaxAnchor="section4"
+        parallaxAnchor="section4"
         sectionEnlargment="300"
       >
         <div className="mx-auto h-full grid grid-cols-1 place-content-end text-center gap-10">
@@ -178,7 +210,7 @@ export default async function Page({ params }) {
       </ParallaxSection>
       <ParallaxSection
         bgImage={imgSection5Bg}
-        parralaxAnchor="section5"
+        parallaxAnchor="section5"
         sectionEnlargment="300"
       >
         <div className="mx-auto h-full grid grid-cols-1 place-content-end text-center gap-10">
@@ -197,7 +229,7 @@ export default async function Page({ params }) {
       </ParallaxSection>
       <ParallaxSection
         bgImage={imgSection6Bg}
-        parralaxAnchor="section6"
+        parallaxAnchor="section6"
         sectionEnlargment="300"
       >
         <div className="mx-auto h-full grid grid-cols-1 place-content-end text-center gap-10">

@@ -6,10 +6,10 @@ import { MINIBOYS_WITH_CATEGORY_QUERY } from "@/sanity/lib/queries";
 import { notFound } from "next/navigation";
 import { ModelCard } from "@/components/modelCard";
 import { NameColorSwitcher } from "@/lib/nameColorSwitcher";
-import placeholder from "@/assets/images/reservation_bg.jpg";
 import { PageHeader } from "@/components/pageHeader";
 import { cache } from "react";
 import { LOCALES } from "@/lib/locales";
+import { urlFor } from "@/sanity/lib/image";
 
 // BLOKADA SSR — wymusza SSG/ISR
 export const dynamic = "error";
@@ -109,10 +109,12 @@ export default async function MiniBoysPage({ params }) {
   const models = data?.models;
   const category = data?.categoryInfo;
 
+  const bgImage = urlFor(category.bgImage).auto("format").quality(80).url();
+
   return (
     <main className="mx-auto min-h-screen bg-white pt-14 lg:pt-20 pb-12">
       {/* Header */}
-      <PageHeader bgImage={placeholder} title={category?.pageTitle?.[locale]} />
+      <PageHeader bgImage={bgImage} title={category?.pageTitle?.[locale]} />
       <section className="mx-auto container max-w-7xl pt-12">
         {models?.length === 0 ? (
           <p className="text-center text-slate-400 py-20">{tr.noModels}</p>

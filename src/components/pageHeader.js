@@ -6,7 +6,7 @@ export const PageHeader = ({ bgImage, title, subTitle }) => {
       className={`${bgImage ? "h-80 xl:min-h-130 md:py-10" : "h-60 xl:min-h-80"} py-6  w-full grid grid-cols-1 place-content-center bg-center bg-cover`}
       style={
         bgImage && {
-          backgroundImage: `url(${bgImage.src})`,
+          backgroundImage: `url(${bgImage})`,
         }
       }
     >

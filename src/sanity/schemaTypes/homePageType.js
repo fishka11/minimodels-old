@@ -112,6 +112,35 @@ export const homePageType = defineType({
               ],
             }),
 
+            // Obraz tła
+            defineField({
+              name: "bgImage",
+              title: "Obraz tła / Background image",
+              type: "image",
+              options: { hotspot: true },
+              description: "Obraz tła sekcji (zalecane: szerokość min. 2000px)",
+            }),
+
+            // Drugi obraz tła
+            defineField({
+              name: "bgImage2",
+              title: "Drugi obraz tła / Second background image",
+              type: "image",
+              options: { hotspot: true },
+              description:
+                "Drugi obraz tła sekcji (zalecane: szerokość min. 2000px)",
+            }),
+
+            // Trzeci obraz tła
+            defineField({
+              name: "bgImage3",
+              title: "Trzeci obraz tła / Third background image",
+              type: "image",
+              options: { hotspot: true },
+              description:
+                "Trzeci obraz tła sekcji (zalecane: szerokość min. 2000px)",
+            }),
+
             // Teksty — dwujęzyczne
             defineField({
               name: "texts",
