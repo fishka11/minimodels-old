@@ -3,10 +3,10 @@ import { sanityFetch } from "@/sanity/lib/client";
 import { LOCALES } from "@/lib/locales";
 import { CASTING_PAGE_QUERY } from "@/sanity/lib/queries";
 import { notFound } from "next/navigation";
-import placeholder from "@/assets/images/casting_bg.jpg";
 import { PageHeader } from "@/components/pageHeader";
 import RichTextRenderer from "@/components/richTextRenderer";
 import { cache } from "react";
+import { urlFor } from "@/sanity/lib/image";
 
 // BLOKADA SSR — wymusza SSG/ISR
 export const dynamic = "error";
@@ -83,12 +83,13 @@ export default async function Page({ params }) {
   if (!LOCALES.includes(locale)) notFound();
 
   const data = await getData();
+  const bgImage = urlFor(data.bgImage).auto("format").quality(80).url();
 
   return (
     <main className="mx-auto bg-white pt-14 lg:pt-20 pb-12">
       {/* Header */}
       <PageHeader
-        bgImage={placeholder}
+        bgImage={bgImage}
         title={data?.pageTitle[locale]}
         subTitle={data?.pageSubtitle[locale]}
       />

@@ -9,7 +9,7 @@ export const Hero = ({ locale, video, texts, bgImage, image, button }) => {
     <div
       className={`relative grid place-items-center bg-fixed bg-cover bg-top`}
       style={{
-        backgroundImage: `url(${bgImage.src})`,
+        backgroundImage: `url(${bgImage})`,
       }}
     >
       <div className="[grid-area:1/1] h-full text-white w-full">
@@ -48,7 +48,7 @@ export const Hero = ({ locale, video, texts, bgImage, image, button }) => {
             </p>
             <div
               className="w-full h-48"
-              style={{ backgroundImage: `url(${image.src})` }}
+              style={{ backgroundImage: `url(${image})` }}
             >
               {/* <Image
                 src={image}

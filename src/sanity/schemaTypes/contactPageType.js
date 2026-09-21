@@ -331,6 +331,14 @@ export const contactPageType = defineType({
         }),
       ],
     }),
+    // Obraz tła
+    defineField({
+      name: "bgImage",
+      title: "Obraz tła / Background image",
+      type: "image",
+      options: { hotspot: true },
+      description: "Obraz tła sekcji (zalecane: szerokość min. 2000px)",
+    }),
   ],
   preview: {
     select: {
