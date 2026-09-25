@@ -14,7 +14,7 @@ import Image from "next/image";
 export const dynamic = "error";
 
 // ISR fallback w sekundach (1 godzina)
-export const revalidate = 3600;
+// export const revalidate = 3600;
 
 // Module-level cache przechowujący dane pobrane podczas builda (klucz: locale)
 const PAGE_CACHE = new Map();
@@ -79,12 +79,11 @@ export async function generateMetadata({ params }) {
 // Strona główna (SSG/ISR)
 // -------------------------------------------------------
 export default async function Page({ params }) {
-  const resolvedParams = await params;
-  const { locale } = resolvedParams;
+  const { locale } = await params;
 
   if (!LOCALES.includes(locale)) notFound();
 
-  const data = await getData();
+  const data = await getData(locale);
 
   const { bodySections } = data.contactPage || {};
   const leftBodySections =

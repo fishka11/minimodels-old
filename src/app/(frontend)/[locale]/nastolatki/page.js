@@ -15,7 +15,7 @@ import { urlFor } from "@/sanity/lib/image";
 export const dynamic = "error";
 
 // ISR fallback w sekundach
-export const revalidate = 3600;
+// export const revalidate = 3600;
 
 // Module-level cache przechowujący dane pobrane podczas builda (klucz: locale)
 const CATEGORY_CACHE = new Map();
@@ -69,32 +69,10 @@ export const getData = cache(async (locale) => {
 });
 
 // -------------------------------------------------------
-// Metadata (odczyt z module cache lub fallback)
-// -------------------------------------------------------
-export async function generateMetadata({ params }) {
-  const resolvedParams = await params;
-  const { locale } = resolvedParams;
-
-  const data = CATEGORY_CACHE.get(locale) || (await getData(locale));
-  const seo = data?.categoryInfo?.seo?.[locale];
-
-  return {
-    title:
-      seo?.title ||
-      (locale === "pl"
-        ? "Nastolatki do reklam i sesji zdjęciowych | MiniModels"
-        : "Teenagers for commercials and photo shoots | MiniModels"),
-    description: seo?.description || "",
-    keywords: seo?.keywords || "",
-  };
-}
-
-// -------------------------------------------------------
 // Strona
 // -------------------------------------------------------
 export default async function TeensPage({ params }) {
-  const resolvedParams = await params;
-  const { locale } = resolvedParams;
+  const { locale } = await params;
 
   if (!LOCALES.includes(locale)) notFound();
 
@@ -109,7 +87,9 @@ export default async function TeensPage({ params }) {
   const models = data?.models;
   const category = data?.categoryInfo;
 
-  const bgImage = urlFor(category.bgImage).auto("format").quality(80).url();
+  const bgImage = category?.bgImage
+    ? urlFor(category.bgImage).auto("format").quality(80).url()
+    : null;
 
   return (
     <main className="mx-auto min-h-screen bg-white pt-14 lg:pt-20 pb-12">

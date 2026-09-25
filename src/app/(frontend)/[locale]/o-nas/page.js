@@ -11,7 +11,7 @@ import { urlFor } from "@/sanity/lib/image";
 export const dynamic = "error";
 
 // ISR fallback w sekundach (1 godzina)
-export const revalidate = 3600;
+// export const revalidate = 3600;
 
 // Module-level cache przechowujący dane pobrane podczas builda (klucz: locale)
 const PAGE_CACHE = new Map();
@@ -76,13 +76,15 @@ export async function generateMetadata({ params }) {
 // Strona główna (SSG/ISR)
 // -------------------------------------------------------
 export default async function Page({ params }) {
-  const resolvedParams = await params;
-  const { locale } = resolvedParams;
+  const { locale } = await params;
 
   if (!LOCALES.includes(locale)) notFound();
 
-  const data = await getData();
-  const bgImage = urlFor(data.bgImage).auto("format").quality(80).url();
+  const data = await getData(locale);
+
+  const bgImage = data?.bgImage
+    ? urlFor(data.bgImage).auto("format").quality(80).url()
+    : null;
 
   return (
     <main className="mx-auto min-h-screen bg-white pt-14 lg:pt-20 pb-12">

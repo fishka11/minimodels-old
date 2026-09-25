@@ -76,12 +76,11 @@ export async function generateMetadata({ params }) {
 // Strona główna (SSG/ISR)
 // -------------------------------------------------------
 export default async function Page({ params }) {
-  const resolvedParams = await params;
-  const { locale } = resolvedParams;
+  const { locale } = await params;
 
   if (!LOCALES.includes(locale)) notFound();
 
-  const data = await getData();
+  const data = await getData(locale);
 
   return (
     <main className="mx-auto bg-white pt-14 lg:pt-20 pb-18 lg:pb-28">

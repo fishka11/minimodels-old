@@ -358,6 +358,13 @@ export type ModelCategory = {
       keywords?: Array<string>;
     };
   };
+  bgImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
 };
 
 export type Slug = {
@@ -436,6 +443,13 @@ export type ContactPage = {
     _type: "section";
     _key: string;
   }>;
+  bgImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
 };
 
 export type AboutUsPage = {
@@ -506,6 +520,13 @@ export type AboutUsPage = {
     _type: "section";
     _key: string;
   }>;
+  bgImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
 };
 
 export type FaqPage = {
@@ -547,6 +568,13 @@ export type FaqPage = {
     _type: "faqItem";
     _key: string;
   }>;
+  bgImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
 };
 
 export type CastingPage = {
@@ -613,6 +641,13 @@ export type CastingPage = {
     _type: "section";
     _key: string;
   }>;
+  bgImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
 };
 
 export type HomePage = {
@@ -986,7 +1021,7 @@ export type AllSanitySchemaTypes =
 
 // Source: src/sanity/lib/queries.ts
 // Variable: BABIES_WITH_CATEGORY_QUERY
-// Query: {    "models": *[_type == "model"       && category->title == "baby"       && active == true      && defined(contractDate)      && dateTime(contractDate + "T00:00:00Z") > dateTime($cutoffDate)    ]    // | order(_createdAt desc) {    | order(        dateTime(contractDate + "T00:00:00Z") desc,        _createdAt desc      ) {      _id, name, slug, birthDate, contractDate, _createdAt, profileImage,      "category": {        "title": category->title,        "displayName": category->displayName      }    },    "categoryInfo": *[_type == "modelCategory" && title == "baby"][0] {      _id,      title,      seo,      pageTitle,      pageSubtitle    }  }
+// Query: {    "models": *[_type == "model"       && category->title == "baby"       && active == true      && defined(contractDate)      && dateTime(contractDate + "T00:00:00Z") > dateTime($cutoffDate)    ]    // | order(_createdAt desc) {    | order(        dateTime(contractDate + "T00:00:00Z") desc,        _createdAt desc      ) {      _id, name, slug, birthDate, contractDate, _createdAt, profileImage,      "category": {        "title": category->title,        "displayName": category->displayName      }    },    "categoryInfo": *[_type == "modelCategory" && title == "baby"][0] {      _id,      title,      seo,      pageTitle,      pageSubtitle,      bgImage,    }  }
 export type BABIES_WITH_CATEGORY_QUERY_RESULT = {
   models: Array<{
     _id: string;
@@ -1031,12 +1066,19 @@ export type BABIES_WITH_CATEGORY_QUERY_RESULT = {
       pl: string;
       en: string;
     } | null;
+    bgImage: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    } | null;
   } | null;
 };
 
 // Source: src/sanity/lib/queries.ts
 // Variable: MINIBOYS_WITH_CATEGORY_QUERY
-// Query: {    "models": *[_type == "model"       && category->title == "mini-boys"       && active == true      && defined(contractDate)      && dateTime(contractDate + "T00:00:00Z") > dateTime($cutoffDate)    ]    // | order(_createdAt desc) {    | order(        dateTime(contractDate + "T00:00:00Z") desc,        _createdAt desc      ) {      _id, name, slug, birthDate, contractDate, _createdAt, profileImage,      "category": {        "title": category->title,        "displayName": category->displayName      }    },    "categoryInfo": *[_type == "modelCategory" && title == "mini-boys"][0] {      _id,      title,      seo,      pageTitle,      pageSubtitle    }  }
+// Query: {    "models": *[_type == "model"       && category->title == "mini-boys"       && active == true      && defined(contractDate)      && dateTime(contractDate + "T00:00:00Z") > dateTime($cutoffDate)    ]    // | order(_createdAt desc) {    | order(        dateTime(contractDate + "T00:00:00Z") desc,        _createdAt desc      ) {      _id, name, slug, birthDate, contractDate, _createdAt, profileImage,      "category": {        "title": category->title,        "displayName": category->displayName      }    },    "categoryInfo": *[_type == "modelCategory" && title == "mini-boys"][0] {      _id,      title,      seo,      pageTitle,      pageSubtitle,      bgImage,    }  }
 export type MINIBOYS_WITH_CATEGORY_QUERY_RESULT = {
   models: Array<{
     _id: string;
@@ -1081,12 +1123,19 @@ export type MINIBOYS_WITH_CATEGORY_QUERY_RESULT = {
       pl: string;
       en: string;
     } | null;
+    bgImage: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    } | null;
   } | null;
 };
 
 // Source: src/sanity/lib/queries.ts
 // Variable: MINIGIRLS_WITH_CATEGORY_QUERY
-// Query: {    "models": *[_type == "model"       && category->title == "mini-girls"       && active == true      && defined(contractDate)      && dateTime(contractDate + "T00:00:00Z") > dateTime($cutoffDate)    ]    // | order(_createdAt desc) {    | order(        dateTime(contractDate + "T00:00:00Z") desc,        _createdAt desc      ) {      _id, name, slug, birthDate, contractDate, _createdAt, profileImage,      "category": {        "title": category->title,        "displayName": category->displayName      }    },    "categoryInfo": *[_type == "modelCategory" && title == "mini-girls"][0] {      _id,      title,      seo,      pageTitle,      pageSubtitle    }  }
+// Query: {    "models": *[_type == "model"       && category->title == "mini-girls"       && active == true      && defined(contractDate)      && dateTime(contractDate + "T00:00:00Z") > dateTime($cutoffDate)    ]    // | order(_createdAt desc) {    | order(        dateTime(contractDate + "T00:00:00Z") desc,        _createdAt desc      ) {      _id, name, slug, birthDate, contractDate, _createdAt, profileImage,      "category": {        "title": category->title,        "displayName": category->displayName      }    },    "categoryInfo": *[_type == "modelCategory" && title == "mini-girls"][0] {      _id,      title,      seo,      pageTitle,      pageSubtitle,      bgImage,    }  }
 export type MINIGIRLS_WITH_CATEGORY_QUERY_RESULT = {
   models: Array<{
     _id: string;
@@ -1131,12 +1180,19 @@ export type MINIGIRLS_WITH_CATEGORY_QUERY_RESULT = {
       pl: string;
       en: string;
     } | null;
+    bgImage: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    } | null;
   } | null;
 };
 
 // Source: src/sanity/lib/queries.ts
 // Variable: TEENS_WITH_CATEGORY_QUERY
-// Query: {    "models": *[_type == "model"       && category->title == "nastolatki"       && active == true      && defined(contractDate)      && dateTime(contractDate + "T00:00:00Z") > dateTime($cutoffDate)    ]    // | order(_createdAt desc) {    | order(        dateTime(contractDate + "T00:00:00Z") desc,        _createdAt desc      ) {      _id, name, slug, birthDate, contractDate, _createdAt, profileImage,      "category": {        "title": category->title,        "displayName": category->displayName      }    },    "categoryInfo": *[_type == "modelCategory" && title == "nastolatki"][0] {      _id,      title,      seo,      pageTitle,      pageSubtitle    }  }
+// Query: {    "models": *[_type == "model"       && category->title == "nastolatki"       && active == true      && defined(contractDate)      && dateTime(contractDate + "T00:00:00Z") > dateTime($cutoffDate)    ]    // | order(_createdAt desc) {    | order(        dateTime(contractDate + "T00:00:00Z") desc,        _createdAt desc      ) {      _id, name, slug, birthDate, contractDate, _createdAt, profileImage,      "category": {        "title": category->title,        "displayName": category->displayName      }    },    "categoryInfo": *[_type == "modelCategory" && title == "nastolatki"][0] {      _id,      title,      seo,      pageTitle,      pageSubtitle,      bgImage,    }  }
 export type TEENS_WITH_CATEGORY_QUERY_RESULT = {
   models: Array<{
     _id: string;
@@ -1180,6 +1236,13 @@ export type TEENS_WITH_CATEGORY_QUERY_RESULT = {
     pageSubtitle: {
       pl: string;
       en: string;
+    } | null;
+    bgImage: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
     } | null;
   } | null;
 };
@@ -1356,7 +1419,7 @@ export type HOME_PAGE_QUERY_RESULT = {
 
 // Source: src/sanity/lib/queries.ts
 // Variable: CASTING_PAGE_QUERY
-// Query: *[_type=="castingPage"][0]{  title,  seo,  pageTitle,  pageSubtitle,  body,  sections[] {    sectionTitle,    texts,    button,    video,    email  }}
+// Query: *[_type=="castingPage"][0]{  title,  seo,  pageTitle,  pageSubtitle,  body,  bgImage,  sections[] {    sectionTitle,    texts,    button,    video,    email  }}
 export type CASTING_PAGE_QUERY_RESULT = {
   title: string | null;
   seo: {
@@ -1382,6 +1445,13 @@ export type CASTING_PAGE_QUERY_RESULT = {
   body: {
     pl?: BlockContent;
     en?: BlockContent;
+  } | null;
+  bgImage: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
   } | null;
   sections: Array<{
     sectionTitle: string;
@@ -1418,7 +1488,7 @@ export type CASTING_PAGE_QUERY_RESULT = {
 
 // Source: src/sanity/lib/queries.ts
 // Variable: ABOUTUS_PAGE_QUERY
-// Query: *[_type=="aboutUsPage"][0]{  title,  seo,  pageTitle,  pageSubtitle,  body,  sections[] {    sectionTitle,    texts,    button,    video,    email  }}
+// Query: *[_type=="aboutUsPage"][0]{  title,  seo,  pageTitle,  pageSubtitle,  body,  bgImage,  sections[] {    sectionTitle,    texts,    button,    video,    email  }}
 export type ABOUTUS_PAGE_QUERY_RESULT = {
   title: string | null;
   seo: {
@@ -1444,6 +1514,13 @@ export type ABOUTUS_PAGE_QUERY_RESULT = {
   body: {
     pl?: BlockContent;
     en?: BlockContent;
+  } | null;
+  bgImage: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
   } | null;
   sections: Array<{
     sectionTitle: string;
@@ -1808,18 +1885,18 @@ export type CONTACT_PAGE_QUERY_WITH_TEAM_RESULT = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    '\n  {\n    "models": *[_type == "model" \n      && category->title == "baby" \n      && active == true\n      && defined(contractDate)\n      && dateTime(contractDate + "T00:00:00Z") > dateTime($cutoffDate)\n    ]\n    // | order(_createdAt desc) {\n    | order(\n        dateTime(contractDate + "T00:00:00Z") desc,\n        _createdAt desc\n      ) {\n      _id, name, slug, birthDate, contractDate, _createdAt, profileImage,\n      "category": {\n        "title": category->title,\n        "displayName": category->displayName\n      }\n    },\n    "categoryInfo": *[_type == "modelCategory" && title == "baby"][0] {\n      _id,\n      title,\n      seo,\n      pageTitle,\n      pageSubtitle\n    }\n  }\n': BABIES_WITH_CATEGORY_QUERY_RESULT;
-    '\n  {\n    "models": *[_type == "model" \n      && category->title == "mini-boys" \n      && active == true\n      && defined(contractDate)\n      && dateTime(contractDate + "T00:00:00Z") > dateTime($cutoffDate)\n    ]\n    // | order(_createdAt desc) {\n    | order(\n        dateTime(contractDate + "T00:00:00Z") desc,\n        _createdAt desc\n      ) {\n      _id, name, slug, birthDate, contractDate, _createdAt, profileImage,\n      "category": {\n        "title": category->title,\n        "displayName": category->displayName\n      }\n    },\n    "categoryInfo": *[_type == "modelCategory" && title == "mini-boys"][0] {\n      _id,\n      title,\n      seo,\n      pageTitle,\n      pageSubtitle\n    }\n  }\n': MINIBOYS_WITH_CATEGORY_QUERY_RESULT;
-    '\n  {\n    "models": *[_type == "model" \n      && category->title == "mini-girls" \n      && active == true\n      && defined(contractDate)\n      && dateTime(contractDate + "T00:00:00Z") > dateTime($cutoffDate)\n    ]\n    // | order(_createdAt desc) {\n    | order(\n        dateTime(contractDate + "T00:00:00Z") desc,\n        _createdAt desc\n      ) {\n      _id, name, slug, birthDate, contractDate, _createdAt, profileImage,\n      "category": {\n        "title": category->title,\n        "displayName": category->displayName\n      }\n    },\n    "categoryInfo": *[_type == "modelCategory" && title == "mini-girls"][0] {\n      _id,\n      title,\n      seo,\n      pageTitle,\n      pageSubtitle\n    }\n  }\n': MINIGIRLS_WITH_CATEGORY_QUERY_RESULT;
-    '\n  {\n    "models": *[_type == "model" \n      && category->title == "nastolatki" \n      && active == true\n      && defined(contractDate)\n      && dateTime(contractDate + "T00:00:00Z") > dateTime($cutoffDate)\n    ]\n    // | order(_createdAt desc) {\n    | order(\n        dateTime(contractDate + "T00:00:00Z") desc,\n        _createdAt desc\n      ) {\n      _id, name, slug, birthDate, contractDate, _createdAt, profileImage,\n      "category": {\n        "title": category->title,\n        "displayName": category->displayName\n      }\n    },\n    "categoryInfo": *[_type == "modelCategory" && title == "nastolatki"][0] {\n      _id,\n      title,\n      seo,\n      pageTitle,\n      pageSubtitle\n    }\n  }\n': TEENS_WITH_CATEGORY_QUERY_RESULT;
+    '\n  {\n    "models": *[_type == "model" \n      && category->title == "baby" \n      && active == true\n      && defined(contractDate)\n      && dateTime(contractDate + "T00:00:00Z") > dateTime($cutoffDate)\n    ]\n    // | order(_createdAt desc) {\n    | order(\n        dateTime(contractDate + "T00:00:00Z") desc,\n        _createdAt desc\n      ) {\n      _id, name, slug, birthDate, contractDate, _createdAt, profileImage,\n      "category": {\n        "title": category->title,\n        "displayName": category->displayName\n      }\n    },\n    "categoryInfo": *[_type == "modelCategory" && title == "baby"][0] {\n      _id,\n      title,\n      seo,\n      pageTitle,\n      pageSubtitle,\n      bgImage,\n    }\n  }\n': BABIES_WITH_CATEGORY_QUERY_RESULT;
+    '\n  {\n    "models": *[_type == "model" \n      && category->title == "mini-boys" \n      && active == true\n      && defined(contractDate)\n      && dateTime(contractDate + "T00:00:00Z") > dateTime($cutoffDate)\n    ]\n    // | order(_createdAt desc) {\n    | order(\n        dateTime(contractDate + "T00:00:00Z") desc,\n        _createdAt desc\n      ) {\n      _id, name, slug, birthDate, contractDate, _createdAt, profileImage,\n      "category": {\n        "title": category->title,\n        "displayName": category->displayName\n      }\n    },\n    "categoryInfo": *[_type == "modelCategory" && title == "mini-boys"][0] {\n      _id,\n      title,\n      seo,\n      pageTitle,\n      pageSubtitle,\n      bgImage,\n    }\n  }\n': MINIBOYS_WITH_CATEGORY_QUERY_RESULT;
+    '\n  {\n    "models": *[_type == "model" \n      && category->title == "mini-girls" \n      && active == true\n      && defined(contractDate)\n      && dateTime(contractDate + "T00:00:00Z") > dateTime($cutoffDate)\n    ]\n    // | order(_createdAt desc) {\n    | order(\n        dateTime(contractDate + "T00:00:00Z") desc,\n        _createdAt desc\n      ) {\n      _id, name, slug, birthDate, contractDate, _createdAt, profileImage,\n      "category": {\n        "title": category->title,\n        "displayName": category->displayName\n      }\n    },\n    "categoryInfo": *[_type == "modelCategory" && title == "mini-girls"][0] {\n      _id,\n      title,\n      seo,\n      pageTitle,\n      pageSubtitle,\n      bgImage,\n    }\n  }\n': MINIGIRLS_WITH_CATEGORY_QUERY_RESULT;
+    '\n  {\n    "models": *[_type == "model" \n      && category->title == "nastolatki" \n      && active == true\n      && defined(contractDate)\n      && dateTime(contractDate + "T00:00:00Z") > dateTime($cutoffDate)\n    ]\n    // | order(_createdAt desc) {\n    | order(\n        dateTime(contractDate + "T00:00:00Z") desc,\n        _createdAt desc\n      ) {\n      _id, name, slug, birthDate, contractDate, _createdAt, profileImage,\n      "category": {\n        "title": category->title,\n        "displayName": category->displayName\n      }\n    },\n    "categoryInfo": *[_type == "modelCategory" && title == "nastolatki"][0] {\n      _id,\n      title,\n      seo,\n      pageTitle,\n      pageSubtitle,\n      bgImage,\n    }\n  }\n': TEENS_WITH_CATEGORY_QUERY_RESULT;
     '\n  *[_type == "model" && slug.current == $slug][0] {\n    _id,\n    _createdAt,\n    name,\n    slug,\n    contractDate,\n    birthDate,\n    "category": category->title,\n    profileImage,\n    gallery[defined(asset)] {\n      asset-> {\n        _id,\n        url,\n        alt,\n        metadata {\n          dimensions { width, height, aspectRatio }\n        }\n      },\n      _key,\n      _type,\n      alt\n    },\n    eyeColor,\n    hairColor,\n    hairLength,\n    hairType,\n    "siblings": {\n      "prev": *[_type == "model"\n        && category->title == ^.category->title\n        && active == true\n        && defined(contractDate)\n        && dateTime(contractDate + "T00:00:00Z") > dateTime($cutoffDate)\n        // && _createdAt > ^._createdAt\n        && (\n          dateTime(contractDate + "T00:00:00Z") < dateTime(^.contractDate + "T00:00:00Z")\n          ||\n          (\n            contractDate == ^.contractDate\n            && _createdAt < ^._createdAt\n          )\n        )\n      ]\n      // | order(_createdAt asc)[0] {\n      | order(\n          dateTime(contractDate + "T00:00:00Z") desc,\n          _createdAt desc\n        )[0] {\n        name,\n        slug,\n        profileImage\n      },\n      \n      "next": *[_type == "model"\n        && category->title == ^.category->title\n        && active == true\n        && defined(contractDate)\n        && dateTime(contractDate + "T00:00:00Z") > dateTime($cutoffDate)\n        // && _createdAt < ^._createdAt\n        && (\n          dateTime(contractDate + "T00:00:00Z") > dateTime(^.contractDate + "T00:00:00Z")\n          ||\n          (\n            contractDate == ^.contractDate\n            && _createdAt > ^._createdAt\n          )\n        )\n      ]\n      // | order(_createdAt desc)[0] {\n      | order(\n          dateTime(contractDate + "T00:00:00Z") asc,\n          _createdAt asc\n        )[0] {\n        name,\n        slug,\n        profileImage\n      }\n    }\n  }\n': MODEL_WITH_SIBLINGS_QUERY_RESULT;
     '*[_type == "model" && category->title == "baby" && active == true && defined(slug.current)] {\n    "slug": slug.current\n  }': ALL_BABY_SLUGS_QUERY_RESULT;
     '*[_type == "model" && category->title == "mini-boys" && active == true && defined(slug.current)] {\n    "slug": slug.current\n  }': ALL_MINIBOYS_SLUGS_QUERY_RESULT;
     '*[_type == "model" && category->title == "mini-girls" && active == true && defined(slug.current)] {\n    "slug": slug.current\n  }': ALL_MINIGIRLS_SLUGS_QUERY_RESULT;
     '*[_type == "model" && category->title == "nastolatki" && active == true && defined(slug.current)] {\n    "slug": slug.current\n  }': ALL_TEENS_SLUGS_QUERY_RESULT;
     '\n  *[_type == "homePage" && _id == "homePage"][0] {\n    title,\n    seo,\n    sections[] {\n      sectionTitle,\n      bgImage,\n      bgImage2,\n      bgImage3,\n      texts,\n      button,\n      video\n    }\n  }\n': HOME_PAGE_QUERY_RESULT;
-    '\n  *[_type=="castingPage"][0]{\n  title,\n  seo,\n  pageTitle,\n  pageSubtitle,\n  body,\n  sections[] {\n    sectionTitle,\n    texts,\n    button,\n    video,\n    email\n  }\n}\n': CASTING_PAGE_QUERY_RESULT;
-    '\n  *[_type=="aboutUsPage"][0]{\n  title,\n  seo,\n  pageTitle,\n  pageSubtitle,\n  body,\n  sections[] {\n    sectionTitle,\n    texts,\n    button,\n    video,\n    email\n  }\n}\n': ABOUTUS_PAGE_QUERY_RESULT;
+    '\n  *[_type=="castingPage"][0]{\n  title,\n  seo,\n  pageTitle,\n  pageSubtitle,\n  body,\n  bgImage,\n  sections[] {\n    sectionTitle,\n    texts,\n    button,\n    video,\n    email\n  }\n}\n': CASTING_PAGE_QUERY_RESULT;
+    '\n  *[_type=="aboutUsPage"][0]{\n  title,\n  seo,\n  pageTitle,\n  pageSubtitle,\n  body,\n  bgImage,\n  sections[] {\n    sectionTitle,\n    texts,\n    button,\n    video,\n    email\n  }\n}\n': ABOUTUS_PAGE_QUERY_RESULT;
     '\n  *[_type == "faqPage"][0]{\n    title,\n    seo,\n    pageTitle,\n    pageSubtitle,\n    faq[] {\n      _key,\n      question,\n      answer\n    }\n  }\n': FAQ_PAGE_QUERY_RESULT;
     '\n  *[_type == "contactPage"][0]{\n    title,\n    seo,\n    pageTitle,\n    pageSubtitle,\n    bodySections,\n    sections[] {\n      sectionTitle,\n      texts,\n      phones,\n      button,\n      video,\n      email\n    } \n  }\n': CONTACT_PAGE_QUERY_RESULT;
     '\n  *[\n    _type == "model" &&\n    active == true &&\n    defined(contractDate) &&\n    dateTime(contractDate + "T00:00:00Z") < dateTime($limitDate)\n  ]{\n    _id,\n    name,\n    contractDate,\n    slug,\n    "categoryTitle": category->title\n  }\n': EXPIRED_MODELS_QUERY_RESULT;

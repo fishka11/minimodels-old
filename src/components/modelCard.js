@@ -16,16 +16,18 @@ export function ModelCard({ model, locale, category, nameColor }) {
       {/* Zdjęcie */}
       <div className="">
         <div className="relative aspect-2/3 h-82.5">
-          {profileImage ? (
+          {profileImage?.asset ? (
             <Image
               src={urlFor(profileImage)
                 .width(220)
                 .height(330)
                 .fit("crop")
                 .quality(80)
+                .auto("format")
                 .url()}
               alt={profileImage?.alt || name}
               fill
+              unoptimized
               className="mx-auto w-55 h-82.5 group-hover:scale-105 transition-transform duration-200 ease-in"
               sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 20vw"
             />

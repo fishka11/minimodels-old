@@ -14,7 +14,7 @@ import { cache } from "react";
 export const dynamic = "error";
 
 // ⏱ ISR fallback (bezpieczne)
-export const revalidate = 3600;
+// export const revalidate = 3600;
 
 export const getData = cache(async (slug) => {
   const cutoffDate = new Date();
