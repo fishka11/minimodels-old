@@ -32,6 +32,7 @@ export async function generateStaticParams() {
         const data = await sanityFetch({
           query: HOME_PAGE_QUERY,
           params: { locale },
+          revalidate: 86400,
           tags: ["homePage"],
         });
 

@@ -13,10 +13,11 @@ export async function sanityFetch({
   query,
   params = {},
   revalidate = 3600, // default revalidation time in seconds
+  useCdn = true,
   // tags = [],
 }) {
   return client.fetch(query, params, {
-    useCdn: false,
+    useCdn,
     next: {
       // revalidate: tags.length ? false : revalidate, // for simple, time-based revalidation
       // tags, // for tag-based revalidation

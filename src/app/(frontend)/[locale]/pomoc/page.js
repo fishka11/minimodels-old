@@ -11,7 +11,7 @@ import { cache } from "react";
 export const dynamic = "error";
 
 // ISR fallback w sekundach (1 godzina)
-export const revalidate = 3600;
+// export const revalidate = 3600;
 
 // Module-level cache przechowujący dane pobrane podczas builda (klucz: locale)
 const PAGE_CACHE = new Map();
@@ -48,6 +48,7 @@ export const getData = cache(async (locale) => {
   const data = await sanityFetch({
     query: FAQ_PAGE_QUERY,
     params: { locale },
+    revalidate: 86400,
     tags: ["faqPage"],
   });
 

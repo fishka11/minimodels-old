@@ -8,6 +8,7 @@ import { cache } from "react";
 export const getData = cache(async () => {
   const data = await sanityFetch({
     query: CASTING_SECTION_QUERY,
+    revalidate: 86400,
     tags: ["castingSection"],
   });
 

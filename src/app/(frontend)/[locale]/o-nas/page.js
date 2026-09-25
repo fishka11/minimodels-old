@@ -25,6 +25,7 @@ export async function generateStaticParams() {
       try {
         const data = await sanityFetch({
           query: ABOUTUS_PAGE_QUERY,
+          revalidate: 86400,
           tags: ["aboutUsPage"],
         });
 
