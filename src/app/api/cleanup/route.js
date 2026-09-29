@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@sanity/client";
 import { EXPIRED_MODELS_QUERY } from "@/sanity/lib/queries";
+import { revalidateTag } from "next/cache";
 
 // import { Resend } from "resend";
 import { apiVersion, dataset, projectId } from "@/sanity/env";
@@ -35,7 +36,9 @@ export async function GET(req) {
     now.getFullYear() - 1,
     now.getMonth(),
     now.getDate(),
-  );
+  )
+    .toISOString()
+    .split("T")[0];
 
   try {
     // Pobierz modele z wygasłą umową

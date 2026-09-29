@@ -1,5 +1,6 @@
 // src/app/[locale]/mini-girls/[slug]/page.js
 
+import { getCutoffDate } from "@/lib/cutoffDate";
 import { sanityFetch } from "@/sanity/lib/client";
 import {
   ALL_MINIGIRLS_SLUGS_QUERY,
@@ -22,9 +23,8 @@ export const getData = cache(async (slug) => {
 
   const data = await sanityFetch({
     query: MODEL_WITH_SIBLINGS_QUERY,
-    params: { slug, cutoffDate: cutoffDate.toISOString() },
+    params: { slug, cutoffDate: getCutoffDate() },
     revalidate: 3600,
-    useCdn: false,
     tags: [`model:${slug}`, `category:mini-girls`],
   });
 

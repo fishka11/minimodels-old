@@ -31,7 +31,6 @@ export async function generateStaticParams() {
           query: MINIGIRLS_WITH_CATEGORY_QUERY,
           params: { cutoffDate: getCutoffDate(), locale },
           revalidate: 3600,
-          useCdn: false,
           tags: ["category:mini-girls"],
         });
 

@@ -62,7 +62,6 @@ export const getData = cache(async (locale) => {
     query: BABIES_WITH_CATEGORY_QUERY,
     params: { cutoffDate: getCutoffDate(), locale },
     revalidate: 3600,
-    useCdn: false,
     tags: ["category:baby"],
   });
 

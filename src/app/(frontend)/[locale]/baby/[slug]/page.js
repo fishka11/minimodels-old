@@ -1,5 +1,6 @@
 // src/app/[locale]/baby/[slug]/page.js
 
+import { getCutoffDate } from "@/lib/cutoffDate";
 import { sanityFetch } from "@/sanity/lib/client";
 import {
   ALL_BABY_SLUGS_QUERY,
@@ -17,14 +18,10 @@ export const dynamic = "error";
 // export const revalidate = 3600;
 
 export const getData = cache(async (slug) => {
-  const cutoffDate = new Date();
-  cutoffDate.setFullYear(cutoffDate.getFullYear() - 1);
-
   const data = await sanityFetch({
     query: MODEL_WITH_SIBLINGS_QUERY,
-    params: { slug, cutoffDate: cutoffDate.toISOString() },
+    params: { slug, cutoffDate: getCutoffDate() },
     revalidate: 3600,
-    useCdn: false,
     tags: [`model:${slug}`, `category:baby`],
   });
 
